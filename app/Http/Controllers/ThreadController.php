@@ -15,7 +15,8 @@ class ThreadController extends Controller
     public function index()
     {
 
-        $threads = Thread::with("comments")->orderBy('created_at', 'desc')->get();
+        $threads = Thread::with(["comments" , "likes"])->orderBy('created_at', 'desc')->get();
+        
         return Inertia::render('Threads/Threads', [
             'threads' => $threads,
         ]);
@@ -49,6 +50,7 @@ class ThreadController extends Controller
         return Inertia::render('Threads/Thread', [
             'thread' => $thread,
             'comments' => $thread->comments,
+            'likes' => $thread->likes,
         ]);
     }
 
