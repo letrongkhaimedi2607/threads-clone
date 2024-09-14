@@ -5,7 +5,7 @@ import { computed } from "vue";
 import { usePage } from "@inertiajs/vue3";
 const page = usePage();
 
-function handleClickMenu(path) {
+function handleClickMenu(path: string) {
     if (page?.props?.auth?.user?.id) {
         return (window.location.href = `/${path}`);
         
@@ -42,7 +42,7 @@ function handleClickMenu(path) {
                         />
                     </svg>
                 </Link>
-                <Link class="hover:bg-gray-300 rounded p-3" @click="handleClickMenu('search')">
+                <Link href="#" class="hover:bg-gray-300 rounded p-3" @click="handleClickMenu('search')">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -74,7 +74,7 @@ function handleClickMenu(path) {
                         />
                     </svg>
                 </Link>
-                <Link class="hover:bg-gray-300 rounded p-3" href="/favorite">
+                <Link class="hover:bg-gray-300 rounded p-3" href="#" @click="handleClickMenu('favorite')">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

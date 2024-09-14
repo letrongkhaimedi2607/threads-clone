@@ -7,7 +7,7 @@ import { ref } from "vue";
 const titleInput = ref<HTMLInputElement | null>(null);
 
 const form = useForm({
-    title: "",
+    title: "Title Sample",
     content: "",
 });
 const formCallback = {
@@ -16,10 +16,8 @@ const formCallback = {
         form.reset();
     },
     onError: () => {
-        if (form.errors.title) {
-            form.reset("title");
-            titleInput.value?.focus();
-        }
+        console.log("error" , form.errors)
+        
     },
 };
 </script>

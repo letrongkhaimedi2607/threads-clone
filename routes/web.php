@@ -1,20 +1,23 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ThreadController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -27,10 +30,16 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::controller(ThreadController::class)->group(function () {
+    Route::get('/', 'index')->name('threads.index');;
     Route::get('/threads', 'index')->name('threads.index');;
     Route::get('/threads/{id}', 'show');
     Route::post('/threads', 'store')->name('threads.store');
 });
+
+Route::controller(FavoriteController::class)->group(function () {
+    Route::get('/favorite', 'edit')->name('favorite.index');;
+});
+
 
 Route::controller(CommentController::class)->group(function () {
 
